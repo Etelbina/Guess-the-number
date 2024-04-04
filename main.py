@@ -12,14 +12,16 @@ def game():
     secret_number = random.randint(min,max)
     cow_guess = 0
     scores = []
+    winner = ""
     i = 1
     while i !=11:
         print("secret:", secret_number, "// min:", min, "max:", max)
         user_input = user_shift(i)
         setting_scores(i, user_input, scores)
+        # user shift ------------------
         if (int(user_input) == secret_number):
-            end_game(secret_number, i, scores)
-            print(cow_says("You won!!!!!"))
+            winner = "user"
+            end_game(secret_number, i, scores, winner)
             break
         else:
             if(int(user_input) > secret_number):
@@ -33,18 +35,24 @@ def game():
             # cow shift ------------------
             cow_guess =  cow_shift(min, max)
             if(cow_guess == secret_number):
-                end_game(secret_number, i, scores)
-                print(cow_says("I won!!!"))
+                winner = "cow"
+                end_game(secret_number, i, scores, winner)
+                break
             elif (cow_guess > secret_number and cow_guess <= max):
                 max = cow_guess-1
             elif (cow_guess < secret_number and cow_guess >= min):
                 min = cow_guess+1
         i += 1
-    end_game(secret_number, i, scores)
+    # system winsn ------------------
+    end_game(secret_number, i, scores, winner)
 
-def end_game(secret_number, i, scores):
+def end_game(secret_number, i, scores, winner):
     print(computer_says(f"End of the game. The secret number is {secret_number}"))
-    if(i == 11):
+    if(winner == "user"):
+        print(cow_says("You won!!!!!"))
+    elif(winner == "cow"):
+        print(cow_says("I won!!!"))
+    elif(i == 11):
         print(cow_says("Oh no! We both lost against the system..."))
     for item in scores:
         print(item)
@@ -88,7 +96,9 @@ def cow_says(message):
 def user_says(message):
     return f"  //\n ('')    User:  \033[45m {message} \033[0m\n / rr\n*\\ ))_\n"
 
-welcome_game()
+# welcome_game()
+
+if __name__ == "__main__":
+    welcome_game()
 
 #registro de partidas y el ganador por partida
-#oop
