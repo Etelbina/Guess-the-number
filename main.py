@@ -9,7 +9,7 @@ def welcome_game():
 def game():
     min = 1
     max = 100
-    secret_number = random.randint(min,max)
+    secret_number = random_number(min,max)
     cow_guess = 0
     scores = []
     winner = ""
@@ -33,7 +33,7 @@ def game():
                 if (int(user_input) >= min):
                     min = int(user_input)+1
             # cow shift ------------------
-            cow_guess =  cow_shift(min, max)
+            cow_guess =  random_number(min,max)
             if(cow_guess == secret_number):
                 winner = "cow"
                 end_game(secret_number, i, scores, winner)
@@ -47,6 +47,7 @@ def game():
     end_game(secret_number, i, scores, winner)
 
 def end_game(secret_number, i, scores, winner):
+    print(scores)
     print(computer_says(f"End of the game. The secret number is {secret_number}"))
     if(winner == "user"):
         print(cow_says("You won!!!!!"))
@@ -61,12 +62,11 @@ def end_game(secret_number, i, scores, winner):
 def play_again():
     print(computer_says("Do you want to play again?"))
     user_input = input(f"Write Y for yes and N for no ✏︎ ")
-    #print(user_says(user_input))
     if(user_input == "Y" or user_input == "y"):
         print(cow_says(f"Yay!! New game!!!!!!!!!!!!!"))
         print(computer_says(f"\033[47m New secret number: (??) \033[0m"))
         game()
-    elif(user_input != "Y" or user_input != "y"): #por que no pasa a este lado de la validacion
+    elif(user_input != "Y" or user_input != "y"):
         print(computer_says(f"\033[47m Shutting down... \033[0m"))
         print(cow_says(f"See you later!!"))
 
@@ -77,7 +77,7 @@ def user_shift(i):
     return user_input
 
 def cow_shift(min, max):
-    cow_guess = random.randint(min,max)
+    cow_guess = random_number(min,max)
     #cow_guess = int((max - min) / 2) + min
     print(cow_says(f"It's my turn!! My guess is: {cow_guess}"))
     return cow_guess
@@ -85,6 +85,9 @@ def cow_shift(min, max):
 def setting_scores(i, user_input, scores):
     scores.append(f"Your guess on shift #{i}: {user_input}")
     return scores
+
+def random_number(min,max):
+    return random.randint(min,max)
     
   #------------------------ message functions ------------------------
 def computer_says(message):
