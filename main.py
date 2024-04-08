@@ -47,7 +47,7 @@ def game():
     end_game(secret_number, i, scores, winner)
 
 def end_game(secret_number, i, scores, winner):
-    print(scores)
+    #print(scores)
     print(computer_says(f"End of the game. The secret number is {secret_number}"))
     if(winner == "user"):
         print(cow_says("You won!!!!!"))
@@ -98,8 +98,6 @@ def cow_says(message):
 
 def user_says(message):
     return f"  //\n ('')    User:  \033[45m {message} \033[0m\n / rr\n*\\ ))_\n"
-
-# welcome_game()
 
 if __name__ == "__main__":
     welcome_game()
