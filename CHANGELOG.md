@@ -1,7 +1,35 @@
-## 1.0.0 - 4.3.2024
+## 3.0.0 - 4.9.2024
 
 ### Learnings
-- Pythos syntax
+- OOP python
+
+### Added
+- ok OOP version
+- Winner records by game
+- User name
+
+## 2.0.0 - 4.5.2024
+
+### Learnings
+- Functional paradigm
+- unittest
+
+### Added
+- FP version
+- Tests
+- Ascii drows
+- - Winner records by turn
+
+### Fixed
+- Breacks os loop
+
+### Removed
+- Repetitiv code
+
+## 1.0.0 - 3.3.2024
+
+### Learnings
+- Python syntax
 
 ### Added
 - Loop version of the game
